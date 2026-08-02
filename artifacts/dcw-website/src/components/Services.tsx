@@ -5,21 +5,25 @@ const services = [
   {
     title: "Certified Welding Services",
     description: "Certified on-site welding for industrial, commercial, municipal, and government facilities.",
+    items: ["Naval Ship Repair"],
     icon: Hammer,
   },
   {
     title: "Welding Inspection & NDT",
     description: "Visual welding inspections and coordination of Non-Destructive Testing (NDT) to ensure code compliance and quality assurance.",
+    items: [],
     icon: ClipboardCheck,
   },
   {
     title: "Welding Consultation",
     description: "Technical consultation for welding procedures, repairs, project planning, and code compliance.",
+    items: [],
     icon: Users,
   },
   {
     title: "Free Project Estimates",
     description: "Contact Dayton Certified Welding for a free estimate and expert consultation tailored to your project's welding and fabrication requirements.",
+    items: [],
     icon: Calculator,
   },
 ];
@@ -57,9 +61,19 @@ export function Services() {
                   <h4 className="text-xl font-display font-semibold text-foreground mb-4">
                     {service.title}
                   </h4>
-                  <p className="text-muted-foreground leading-relaxed flex-grow">
+                  <p className="text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
+                  {service.items.length > 0 && (
+                    <ul className="mt-4 space-y-1 flex-grow">
+                      {service.items.map((item, i) => (
+                        <li key={i} className="flex items-center gap-2 text-sm font-medium text-foreground">
+                          <span className="text-primary">▹</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </StaggerItem>
             );
