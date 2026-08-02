@@ -38,8 +38,8 @@ export function Contact() {
                       </div>
                       <div>
                         <span className="block text-sm font-bold text-muted-foreground uppercase tracking-wider mb-1">Phone</span>
-                        <a href="tel:+1000000000" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
-                          (555) 123-4567
+                        <a href="tel:+19512970622" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+                          (951) 297-0622
                         </a>
                       </div>
                     </div>
@@ -50,8 +50,8 @@ export function Contact() {
                       </div>
                       <div>
                         <span className="block text-sm font-bold text-muted-foreground uppercase tracking-wider mb-1">Email</span>
-                        <a href="mailto:info@daytoncertifiedwelding.com" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
-                          info@daytoncertifiedwelding.com
+                        <a href="mailto:david@daytoncertifiedwelding.com" className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+                          david@daytoncertifiedwelding.com
                         </a>
                       </div>
                     </div>
@@ -63,7 +63,7 @@ export function Contact() {
                       <div>
                         <span className="block text-sm font-bold text-muted-foreground uppercase tracking-wider mb-1">Location</span>
                         <span className="text-lg font-semibold text-foreground">
-                          Southern California
+                          Temecula, California
                         </span>
                       </div>
                     </div>
