@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Dayton Certified Welding"
+description = "Professional website for Dayton Certified Welding Inc., a Southern California union welding company serving municipalities, utilities, government agencies, and industrial clients since 1993. The site emphasizes qualifications, certifications, industry experience, and contact information with no marketing fluff."
+version = "1.0.0"
+id = "artifacts/dcw-website"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20169
+
+[services.development]
+run = "pnpm --filter @workspace/dcw-website run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dcw-website", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dcw-website/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20169"
+BASE_PATH = "/"
