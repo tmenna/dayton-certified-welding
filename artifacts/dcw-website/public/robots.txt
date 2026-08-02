@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://daytoncertifiedwelding.com/sitemap.xml
