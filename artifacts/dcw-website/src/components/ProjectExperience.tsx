@@ -11,28 +11,28 @@ const photos = [
   },
   {
     src: new URL("@assets/dayton_certified_welding_2_1785709353361.jpg", import.meta.url).href,
-    caption: "Top-of-Pipe Weld",
-    detail: "Water Main · Certified Field Work",
+    caption: "",
+    detail: "",
   },
   {
     src: new URL("@assets/dayton_certified_welding_3_1785709353361.jpg", import.meta.url).href,
-    caption: "Large-Diameter Pipe Staging",
-    detail: "Pipeline Infrastructure · Heavy Lift",
+    caption: "",
+    detail: "",
   },
   {
     src: new URL("@assets/dayton_certified_welding_4_1785709353361.jpg", import.meta.url).href,
-    caption: "Confined Space Welding",
-    detail: "Pressure Piping · Critical Access",
+    caption: "",
+    detail: "",
   },
   {
     src: new URL("@assets/dayton_certified_welding_5_1785709353361.jpg", import.meta.url).href,
-    caption: "Pressure Piping Vault",
-    detail: "Industrial Piping · Assembly & Fit-Up",
+    caption: "",
+    detail: "",
   },
   {
     src: new URL("@assets/dayton_certified_welding_6_1785709353361.jpg", import.meta.url).href,
-    caption: "Field Fabrication",
-    detail: "Infrastructure · Certified Welding",
+    caption: "",
+    detail: "",
   },
 ];
 
@@ -84,10 +84,12 @@ export function ProjectExperience() {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 border-t border-border">
-                  <p className="text-sm font-semibold text-foreground">{photo.caption}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5 font-medium tracking-wide">{photo.detail}</p>
-                </div>
+                {photo.caption && (
+                  <div className="px-4 py-3 border-t border-border">
+                    <p className="text-sm font-semibold text-foreground">{photo.caption}</p>
+                    {photo.detail && <p className="text-xs text-muted-foreground mt-0.5 font-medium tracking-wide">{photo.detail}</p>}
+                  </div>
+                )}
               </motion.div>
             </StaggerItem>
           ))}
