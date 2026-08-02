@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
+import logo from "@assets/dcw-logo-srufer-welder_1785714280136.png";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +34,7 @@ export function Navbar() {
         <Link href="/">
           <div className="cursor-pointer group">
             <h1 className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight flex items-center gap-2">
-              <span className="w-4 h-8 bg-primary block"></span>
+              <img src={logo} alt="Dayton Certified Welding" className="h-10 w-10 object-contain" />
               DAYTON CERTIFIED WELDING
             </h1>
           </div>

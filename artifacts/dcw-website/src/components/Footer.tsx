@@ -1,3 +1,5 @@
+import logo from "@assets/dcw-logo-srufer-welder_1785714280136.png";
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -6,14 +8,20 @@ export function Footer() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           
-          <div className="text-center md:text-left">
-            <h2 className="font-display font-bold text-xl tracking-tight flex items-center justify-center md:justify-start gap-2 mb-2 text-white">
-              <span className="w-3 h-6 bg-primary block"></span>
-              DAYTON CERTIFIED WELDING
-            </h2>
-            <p className="text-muted-foreground text-sm font-medium">
-              A Southern California Union Welding Company.
-            </p>
+          <div className="flex items-center gap-5">
+            <img
+              src={logo}
+              alt="Dayton Certified Welding"
+              className="h-16 w-16 object-contain rounded-full bg-white p-1 shrink-0 opacity-90"
+            />
+            <div className="text-center md:text-left">
+              <h2 className="font-display font-bold text-xl tracking-tight text-white mb-1">
+                DAYTON CERTIFIED WELDING
+              </h2>
+              <p className="text-muted-foreground text-sm font-medium">
+                A Southern California Union Welding Company.
+              </p>
+            </div>
           </div>
 
           <div className="flex items-center gap-6 text-sm font-semibold text-muted-foreground uppercase tracking-wider">
