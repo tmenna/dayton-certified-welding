@@ -26,7 +26,7 @@ export function Hero() {
             <div className="flex items-center gap-4 mb-6">
               <span className="w-12 h-1 bg-primary block"></span>
               <span className="text-sm md:text-base font-semibold tracking-[0.2em] text-muted-foreground uppercase">
-                Established 1993
+                Since 1993
               </span>
             </div>
           </FadeIn>
