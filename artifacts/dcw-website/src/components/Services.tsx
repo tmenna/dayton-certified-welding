@@ -1,12 +1,12 @@
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
-import { Hammer, ClipboardCheck, Users, Calculator } from "lucide-react";
+import { BadgeCheck, ClipboardCheck, Users, Calculator } from "lucide-react";
 
 const services = [
   {
     title: "Certified Welding Services",
     description: "Certified on-site welding for industrial, commercial, municipal, and government facilities.",
     items: ["Naval Ship Repair"],
-    icon: Hammer,
+    icon: BadgeCheck,
   },
   {
     title: "Welding Inspection & NDT",
