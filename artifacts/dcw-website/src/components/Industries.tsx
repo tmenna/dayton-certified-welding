@@ -81,7 +81,7 @@ export function Industries() {
               <div className="mt-12 p-8 bg-white border border-border relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
                 <p className="text-muted-foreground font-medium italic relative z-10">
-                  "Trusted by government agencies, naval contractors, and critical utility infrastructure providers."
+                  "Trusted by government agencies, naval defense contractors, and critical utility infrastructure providers."
                 </p>
               </div>
             </div>
