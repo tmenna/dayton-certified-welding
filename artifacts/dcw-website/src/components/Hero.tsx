@@ -1,22 +1,34 @@
 import { FadeIn } from "./animations";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import arcFlash from "@assets/dayton_certified_welding_4_1785709353361.jpg";
 
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-background">
+      {/* Right-side hero photo */}
+      <div className="absolute top-0 right-0 w-[42vw] h-full hidden lg:block pointer-events-none">
+        <img
+          src={arcFlash}
+          alt="Certified field welding — confined space arc work"
+          className="w-full h-full object-cover"
+        />
+        {/* Dark gradient fade toward the text */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+        {/* Bottom vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+      </div>
+
       {/* Structural background elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[40vw] h-full bg-muted/30 border-l border-border hidden lg:block" />
         <div className="absolute top-1/4 left-10 w-24 h-[1px] bg-border" />
-        <div className="absolute top-1/3 right-0 w-[10vw] h-[1px] bg-border" />
         <div className="absolute bottom-1/4 left-0 w-[20vw] h-[1px] bg-border" />
-        {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]" 
-          style={{ 
-            backgroundImage: "linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)", 
-            backgroundSize: "4rem 4rem" 
-          }} 
+        {/* Subtle grid pattern on left side only */}
+        <div
+          className="absolute inset-y-0 left-0 w-[58vw] opacity-[0.03]"
+          style={{
+            backgroundImage: "linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)",
+            backgroundSize: "4rem 4rem"
+          }}
         />
       </div>
 
