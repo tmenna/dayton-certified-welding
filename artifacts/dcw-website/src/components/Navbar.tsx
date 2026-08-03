@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import logo from "@assets/dcw-logo-srufer-welder_1785714280136.png";
 
@@ -31,14 +30,15 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link href="/">
-          <div className="cursor-pointer group">
-            <h1 className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight flex items-center gap-2">
-              <img src={logo} alt="Dayton Certified Welding" className="h-10 w-10 object-contain" />
-              DAYTON CERTIFIED WELDING
-            </h1>
-          </div>
-        </Link>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="cursor-pointer group text-left"
+        >
+          <h1 className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight flex items-center gap-2">
+            <img src={logo} alt="Dayton Certified Welding" className="h-10 w-10 object-contain" />
+            DAYTON CERTIFIED WELDING
+          </h1>
+        </button>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
