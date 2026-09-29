@@ -14,35 +14,32 @@ const certifications = [
 
 export function Certifications() {
   return (
-    <section id="certifications" className="py-24 md:py-32 bg-white relative border-y border-border">
-      {/* Background industrial pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-      
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <section id="certifications" className="py-20 md:py-28 bg-card relative border-y border-border">
+      <div className="container mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           
           <div className="lg:col-span-4">
             <FadeIn>
-              <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4 flex items-center gap-3">
-                <span className="w-8 h-[2px] bg-primary block"></span>
+              <h2 className="text-[11px] font-mono font-semibold tracking-[0.14em] text-primary uppercase mb-4 flex items-center gap-3">
+                <span className="w-6 h-[2px] bg-primary block"></span>
                 Qualifications
               </h2>
-              <h3 className="text-4xl md:text-5xl font-display font-semibold text-foreground mb-6">
+              <h3 className="text-5xl md:text-6xl font-display font-semibold leading-none text-foreground mb-6">
                 Code Compliance & Certifications
               </h3>
-              <p className="text-muted-foreground font-medium leading-relaxed mb-8">
+              <p className="text-muted-foreground text-sm md:text-base leading-[1.7] mb-8">
                 We maintain rigorous standards of excellence, fully certified across major structural, pipeline, and military codes. Our commitment to quality assurance ensures your project meets exact specifications.
               </p>
               
-              <div className="hidden lg:flex items-center gap-4 text-foreground/40">
-                <ShieldCheck size={48} strokeWidth={1} />
-                <span className="text-sm font-bold tracking-widest uppercase">Verified Standard</span>
+              <div className="hidden lg:flex items-center gap-3 text-muted-foreground border-t border-border pt-5">
+                <ShieldCheck size={24} strokeWidth={1.25} />
+                <span className="text-[11px] font-mono font-semibold tracking-[0.12em] uppercase">Verified Standard</span>
               </div>
             </FadeIn>
           </div>
 
           <div className="lg:col-span-7 lg:col-start-6">
-            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
               {certifications.map((cert, index) => {
                 // Determine prefix (AWS, ASME, API, NAVSEA) for visual styling
                 const prefix = cert.split(' ')[0];
@@ -50,14 +47,14 @@ export function Certifications() {
 
                 return (
                   <StaggerItem key={index}>
-                    <div className="flex items-stretch border border-border bg-background group hover:border-primary/50 transition-colors">
-                      <div className="bg-muted px-4 py-6 flex items-center justify-center border-r border-border min-w-[80px] group-hover:bg-primary group-hover:text-white transition-colors group-hover:border-primary">
-                        <span className="font-display font-bold text-sm tracking-wider">
+                    <div className="flex items-stretch bg-card group hover:bg-background transition-colors min-h-[82px]">
+                      <div className="bg-accent px-3 py-5 flex items-center justify-center border-r border-border min-w-[76px]">
+                        <span className="font-mono font-semibold text-[10px] tracking-tight text-primary">
                           {prefix}
                         </span>
                       </div>
-                      <div className="p-4 flex items-center">
-                        <span className="font-semibold text-foreground">
+                      <div className="p-4 md:p-5 flex items-center">
+                        <span className="text-sm font-semibold text-foreground leading-snug">
                           {rest || prefix} {/* Fallback if it's just one word */}
                         </span>
                       </div>

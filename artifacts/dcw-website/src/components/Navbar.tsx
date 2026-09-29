@@ -23,37 +23,38 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300 border-b ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-sm border-border py-3 shadow-sm"
-          : "bg-background border-transparent py-5"
+          ? "bg-background/95 backdrop-blur-md border-border"
+          : "bg-background border-border"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="container mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between gap-6 min-h-[76px] lg:min-h-[88px]">
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="cursor-pointer group text-left"
+          onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
+          className="cursor-pointer group text-left min-w-0 shrink-0"
+          aria-label="Dayton Certified Welding — back to top"
         >
-          <h1 className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight flex items-center gap-2">
-            <img src={logo} alt="Dayton Certified Welding" className="h-12 w-12 md:h-14 md:w-14 shrink-0 object-contain" />
-            DAYTON CERTIFIED WELDING
-          </h1>
+          <span className="font-display font-semibold text-[19px] sm:text-[23px] lg:text-[25px] text-foreground leading-[0.9] tracking-[0.005em] flex items-center gap-3">
+            <img src={logo} alt="" className="h-11 w-11 sm:h-13 sm:w-13 lg:h-15 lg:w-15 shrink-0 object-contain" />
+            <span className="max-w-[180px] sm:max-w-none">DAYTON CERTIFIED<br className="hidden sm:block xl:hidden" /> WELDING</span>
+          </span>
         </button>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 shrink-0" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider"
+              className="text-[11px] font-bold text-foreground/75 hover:text-primary transition-colors uppercase tracking-[0.12em] py-3"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="bg-foreground text-background px-6 py-2.5 text-sm font-semibold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors"
+            className="bg-foreground text-background px-6 py-3 text-[11px] font-bold uppercase tracking-[0.13em] hover:bg-primary hover:text-primary-foreground transition-colors"
           >
             Contact
           </a>
@@ -61,9 +62,10 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground"
+          className="xl:hidden text-foreground p-2 border border-border shrink-0"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -71,13 +73,13 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-border shadow-lg">
-          <nav className="flex flex-col py-4">
+        <div className="xl:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-[0_18px_30px_-24px_hsl(var(--foreground)/0.3)]">
+          <nav className="flex flex-col px-5 sm:px-8 py-2" aria-label="Mobile navigation">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-6 py-4 text-sm font-semibold text-foreground border-b border-border/50 uppercase tracking-wider hover:bg-muted"
+                className="px-2 py-4 text-xs font-bold text-foreground border-b border-border uppercase tracking-[0.12em] hover:text-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
@@ -85,7 +87,7 @@ export function Navbar() {
             ))}
             <a
               href="#contact"
-              className="px-6 py-4 text-sm font-bold text-primary uppercase tracking-wider hover:bg-muted"
+              className="px-2 py-4 text-xs font-bold text-primary uppercase tracking-[0.12em]"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact Us

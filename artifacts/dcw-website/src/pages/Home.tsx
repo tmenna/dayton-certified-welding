@@ -10,7 +10,7 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-[100dvh] flex flex-col font-sans">
       <Navbar />
       <main className="flex-grow">
         <Hero />
