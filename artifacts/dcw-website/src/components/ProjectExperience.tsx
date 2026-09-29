@@ -56,7 +56,7 @@ export function ProjectExperience() {
       <div className="container mx-auto px-5 sm:px-8 lg:px-12">
         <FadeIn>
           <div className="mb-11 md:mb-14">
-            <h2 className="text-[11px] font-mono font-semibold tracking-[0.14em] text-primary uppercase mb-4 flex items-center gap-3">
+            <h2 className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-[2px] bg-primary block"></span>
               Field Work
             </h2>
@@ -99,7 +99,7 @@ export function ProjectExperience() {
                 {photo.caption && (
                    <div className="px-5 py-4 border-t border-border">
                      <p className="text-sm font-semibold text-foreground">{photo.caption}</p>
-                     {photo.detail && <p className="text-[11px] font-mono text-muted-foreground mt-1 tracking-wide">{photo.detail}</p>}
+                     {photo.detail && <p className="text-xs font-mono text-muted-foreground mt-1 tracking-wide">{photo.detail}</p>}
                   </div>
                 )}
               </button>

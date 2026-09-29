@@ -35,7 +35,7 @@ export function Services() {
         <FadeIn>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 md:gap-12 mb-11 md:mb-14 pb-7 border-b border-border">
             <div className="max-w-2xl">
-              <h2 className="text-[11px] font-mono font-semibold tracking-[0.14em] text-primary uppercase mb-4 flex items-center gap-3">
+              <h2 className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase mb-4 flex items-center gap-3">
                 <span className="w-6 h-[2px] bg-primary block"></span>
                 Capabilities
               </h2>
@@ -43,7 +43,7 @@ export function Services() {
                 Core Services
               </h3>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
+            <p className="text-muted-foreground text-[15px] leading-relaxed max-w-sm">
               Comprehensive welding solutions delivered with precision, backed by decades of on-site experience.
             </p>
           </div>
@@ -61,7 +61,7 @@ export function Services() {
                   <h4 className="text-[25px] font-display font-semibold leading-[1.05] text-foreground mb-3">
                     {service.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-[1.65]">
+                   <p className="text-[15px] text-muted-foreground leading-[1.65]">
                     {service.description}
                   </p>
                   {service.items.length > 0 && (

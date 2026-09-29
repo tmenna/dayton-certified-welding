@@ -17,7 +17,7 @@ export function Materials() {
       <div className="container mx-auto px-5 sm:px-8 lg:px-12">
         <FadeIn>
           <div className="mb-11 md:mb-14">
-            <h2 className="text-[11px] font-mono font-semibold tracking-[0.14em] text-[hsl(23_73%_68%)] uppercase mb-4 flex items-center gap-3">
+            <h2 className="text-xs font-mono font-semibold tracking-[0.12em] text-[hsl(23_73%_68%)] uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-[2px] bg-primary block"></span>
               Capabilities
             </h2>

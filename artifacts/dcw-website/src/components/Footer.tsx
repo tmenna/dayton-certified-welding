@@ -24,7 +24,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] font-mono font-semibold text-background/65 uppercase tracking-[0.1em]">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-mono font-semibold text-background/75 uppercase tracking-[0.1em]">
             <a href="#services" className="hover:text-background transition-colors">Services</a>
             <a href="#certifications" className="hover:text-background transition-colors">Certifications</a>
             <a href="#contact" className="hover:text-background transition-colors">Contact</a>
@@ -32,7 +32,7 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-12 pt-6 border-t border-background/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-[11px] font-mono text-background/55">
+        <div className="mt-12 pt-6 border-t border-background/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs font-mono text-background/70">
           <p>&copy; {currentYear} Dayton Certified Welding Inc. All rights reserved.</p>
           <p>Since 1993</p>
         </div>

@@ -13,7 +13,7 @@ export function Hero() {
           className="w-full h-full object-cover object-[48%_center] saturate-[0.72] contrast-[1.1]"
         />
         {/* Dark gradient fade toward the text */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/45 to-transparent" />
         {/* Bottom vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
       </div>
@@ -23,14 +23,14 @@ export function Hero() {
           <FadeIn delay={0.1}>
             <div className="flex items-center gap-4 mb-7 md:mb-10">
               <span className="w-8 h-[2px] bg-primary block"></span>
-              <span className="text-[11px] md:text-xs font-mono font-semibold tracking-[0.14em] text-primary uppercase">
+              <span className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase">
                 Since 1993
               </span>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <h1 className="text-[clamp(3.45rem,8.3vw,7.75rem)] font-display font-semibold leading-[0.9] text-foreground mb-7 md:mb-9 max-w-[950px]">
+            <h1 className="text-[clamp(3rem,6.8vw,6.375rem)] font-display font-semibold leading-[0.97] text-foreground mb-7 md:mb-9 max-w-[950px]">
               A Southern California <br className="hidden md:block" />
               <span className="text-primary">Union Welding</span> Company.
             </h1>

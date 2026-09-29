@@ -47,14 +47,14 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-[11px] font-bold text-foreground/75 hover:text-primary transition-colors uppercase tracking-[0.12em] py-3"
+              className="text-xs font-bold text-foreground/85 hover:text-primary transition-colors uppercase tracking-[0.1em] py-3"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="bg-foreground text-background px-6 py-3 text-[11px] font-bold uppercase tracking-[0.13em] hover:bg-primary hover:text-primary-foreground transition-colors"
+            className="bg-foreground text-background px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] hover:bg-primary hover:text-primary-foreground transition-colors"
           >
             Contact
           </a>

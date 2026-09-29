@@ -20,7 +20,7 @@ export function Certifications() {
           
           <div className="lg:col-span-4">
             <FadeIn>
-              <h2 className="text-[11px] font-mono font-semibold tracking-[0.14em] text-primary uppercase mb-4 flex items-center gap-3">
+              <h2 className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase mb-4 flex items-center gap-3">
                 <span className="w-6 h-[2px] bg-primary block"></span>
                 Qualifications
               </h2>
@@ -33,7 +33,7 @@ export function Certifications() {
               
               <div className="hidden lg:flex items-center gap-3 text-muted-foreground border-t border-border pt-5">
                 <ShieldCheck size={24} strokeWidth={1.25} />
-                <span className="text-[11px] font-mono font-semibold tracking-[0.12em] uppercase">Verified Standard</span>
+                <span className="text-xs font-mono font-semibold tracking-[0.12em] uppercase">Verified Standard</span>
               </div>
             </FadeIn>
           </div>
@@ -49,7 +49,7 @@ export function Certifications() {
                   <StaggerItem key={index}>
                     <div className="flex items-stretch bg-card group hover:bg-background transition-colors min-h-[82px]">
                       <div className="bg-accent px-3 py-5 flex items-center justify-center border-r border-border min-w-[76px]">
-                        <span className="font-mono font-semibold text-[10px] tracking-tight text-primary">
+                        <span className="font-mono font-semibold text-xs tracking-tight text-primary">
                           {prefix}
                         </span>
                       </div>

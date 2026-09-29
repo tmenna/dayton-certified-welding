@@ -11,7 +11,7 @@ export function Contact() {
         <FadeIn>
           <div className="max-w-5xl mx-auto">
             <div className="mb-11 md:mb-14">
-              <h2 className="text-[11px] font-mono font-semibold tracking-[0.14em] text-primary uppercase mb-4 flex items-center gap-3">
+              <h2 className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase mb-4 flex items-center gap-3">
                 <span className="w-6 h-[2px] bg-primary block"></span>
                 Get In Touch
               </h2>
@@ -26,7 +26,7 @@ export function Contact() {
                   <h4 className="text-3xl font-display font-semibold text-foreground mb-5">
                     Expert Consultation
                   </h4>
-                  <p className="text-muted-foreground text-sm mb-9 leading-[1.7] max-w-md">
+                  <p className="text-muted-foreground text-[15px] mb-9 leading-[1.7] max-w-md">
                     Contact Dayton Certified Welding for a free estimate and expert consultation tailored to your project's precise welding and fabrication requirements.
                   </p>
                   
@@ -36,7 +36,7 @@ export function Contact() {
                         <Phone size={18} />
                       </div>
                       <div>
-                        <span className="block text-[10px] font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-1">Phone</span>
+                         <span className="block text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-1">Phone</span>
                         <a href="tel:+19512970622" className="text-base font-semibold text-foreground hover:text-primary transition-colors">
                           (951) 297-0622
                         </a>
@@ -48,7 +48,7 @@ export function Contact() {
                         <Mail size={18} />
                       </div>
                       <div>
-                        <span className="block text-[10px] font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-1">Email</span>
+                         <span className="block text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-1">Email</span>
                         <a href="mailto:david@daytoncertifiedwelding.com" className="text-sm sm:text-base font-semibold text-foreground hover:text-primary transition-colors break-all">
                           david@daytoncertifiedwelding.com
                         </a>
@@ -60,7 +60,7 @@ export function Contact() {
                         <MapPin size={18} />
                       </div>
                       <div>
-                        <span className="block text-[10px] font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-1">Location</span>
+                         <span className="block text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-1">Location</span>
                         <span className="text-base font-semibold text-foreground">
                           Temecula, California
                         </span>
