@@ -35,7 +35,7 @@ export function Navbar() {
           className="cursor-pointer group text-left"
         >
           <h1 className="font-display font-bold text-xl md:text-2xl text-foreground tracking-tight flex items-center gap-2">
-            <img src={logo} alt="Dayton Certified Welding" className="h-10 w-10 object-contain" />
+            <img src={logo} alt="Dayton Certified Welding" className="h-12 w-12 md:h-14 md:w-14 shrink-0 object-contain" />
             DAYTON CERTIFIED WELDING
           </h1>
         </button>
