@@ -1,59 +1,73 @@
 import { FadeIn } from "./animations";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import arcFlash from "@assets/dayton_certified_welding_4_1785709353361.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center pt-[76px] lg:pt-[88px] overflow-hidden bg-background">
+    <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-background">
       {/* Right-side hero photo */}
-      <div className="absolute top-[88px] right-0 w-[42%] h-[calc(100%-88px)] hidden lg:block pointer-events-none border-l border-border">
+      <div className="absolute top-0 right-0 w-[42vw] h-full hidden lg:block pointer-events-none">
         <img
           src={arcFlash}
           alt="Certified field welding — confined space arc work"
-          className="w-full h-full object-cover object-[48%_center] saturate-[0.72] contrast-[1.1]"
+          className="w-full h-full object-cover"
         />
         {/* Dark gradient fade toward the text */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/45 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
         {/* Bottom vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-5 sm:px-8 lg:px-12 relative z-10 py-16 sm:py-20 lg:py-24">
-        <div className="max-w-[900px]">
+      {/* Structural background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-10 w-24 h-[1px] bg-border" />
+        <div className="absolute bottom-1/4 left-0 w-[20vw] h-[1px] bg-border" />
+        {/* Subtle grid pattern on left side only */}
+        <div
+          className="absolute inset-y-0 left-0 w-[58vw] opacity-[0.03]"
+          style={{
+            backgroundImage: "linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)",
+            backgroundSize: "4rem 4rem"
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="max-w-4xl">
           <FadeIn delay={0.1}>
-            <div className="flex items-center gap-4 mb-7 md:mb-10">
-              <span className="w-8 h-[2px] bg-primary block"></span>
-              <span className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-12 h-1 bg-primary block"></span>
+              <span className="text-sm md:text-base font-semibold tracking-[0.2em] text-muted-foreground uppercase">
                 Since 1993
               </span>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <h1 className="text-[clamp(3rem,6.8vw,6.375rem)] font-display font-semibold leading-[1.08] md:leading-[0.97] text-foreground mb-7 md:mb-9 max-w-[950px]">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-semibold leading-[1.05] text-foreground mb-8">
               A Southern California <br className="hidden md:block" />
-              <span className="inline-block whitespace-nowrap bg-foreground text-[#FBFBFB] px-[0.12em]">Union Welding</span> Company.
+              <span className="text-primary">Union Welding</span> Company.
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-normal max-w-[590px] leading-[1.65] mb-9 md:mb-12">
+            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium max-w-2xl leading-relaxed mb-12">
               Since 1993, Dayton Certified Welding has built a reputation for delivering dependable welding solutions across California.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.4}>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-6">
               <a
                 href="#contact"
-                className="group flex items-center justify-center gap-5 bg-primary text-primary-foreground px-7 py-4 font-bold text-xs tracking-[0.13em] uppercase transition-colors hover:bg-foreground"
+                className="group flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:bg-primary/90"
               >
                 Request an Estimate
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#services"
-                className="group flex items-center justify-center gap-3 bg-background text-foreground border border-border px-7 py-4 font-bold text-xs tracking-[0.13em] uppercase transition-colors hover:border-foreground"
+                className="group flex items-center justify-center gap-3 bg-white text-foreground border border-border px-8 py-4 font-semibold text-sm tracking-wider uppercase transition-all hover:border-foreground"
               >
                 View Capabilities
               </a>
@@ -62,8 +76,10 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="lg:hidden h-[220px] sm:h-[300px] relative border-t border-border">
-        <img src={arcFlash} alt="Certified field welding — confined space arc work" className="w-full h-full object-cover object-center saturate-[0.72] contrast-[1.1]" />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-6 md:left-12 flex flex-col items-center gap-2 text-muted-foreground animate-bounce">
+        <span className="text-xs font-semibold tracking-widest uppercase writing-vertical-rl rotate-180 mb-2">Scroll</span>
+        <ChevronDown size={20} />
       </div>
     </section>
   );

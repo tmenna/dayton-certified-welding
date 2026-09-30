@@ -19,37 +19,37 @@ export function Industries() {
   ];
 
   return (
-    <section id="industries" className="py-20 md:py-28 bg-background relative">
-      <div className="container mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="industries" className="py-24 md:py-32 bg-background relative">
+      <div className="container mx-auto px-6 md:px-12">
         <FadeIn>
-          <div className="mb-11 md:mb-14">
-            <h2 className="text-xs font-mono font-semibold tracking-[0.12em] text-primary uppercase mb-4 flex items-center gap-3">
-              <span className="w-6 h-[2px] bg-primary block"></span>
+          <div className="mb-16">
+            <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase mb-4 flex items-center gap-3">
+              <span className="w-8 h-[2px] bg-primary block"></span>
               Sectors
             </h2>
-            <h3 className="text-5xl md:text-6xl font-display font-semibold leading-none text-foreground">
+            <h3 className="text-4xl md:text-5xl font-display font-semibold text-foreground">
               Industries Served
             </h3>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
           <FadeIn delay={0.1}>
             <div className="flex flex-col h-full">
-              <div className="flex items-center gap-4 mb-7 pb-5 border-b border-foreground/40">
-                <div className="w-11 h-11 bg-card border border-border flex items-center justify-center text-primary">
-                  <Droplet strokeWidth={1.5} size={22} />
+              <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border">
+                <div className="w-14 h-14 bg-white border border-border flex items-center justify-center text-foreground">
+                  <Droplet strokeWidth={1.5} size={28} />
                 </div>
-                <h4 className="text-3xl md:text-4xl font-display font-semibold text-foreground">
+                <h4 className="text-2xl md:text-3xl font-display font-semibold text-foreground">
                   Water & Wastewater
                 </h4>
               </div>
-              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                 {waterFacilities.map((item, index) => (
                   <StaggerItem key={index}>
-                    <div className="flex items-start gap-3 py-3 border-b border-border/70">
-                      <span className="text-primary mt-1.5 text-xs" aria-hidden="true">—</span>
-                      <span className="text-[15px] font-medium text-foreground">{item}</span>
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary mt-1.5 opacity-80">▹</span>
+                      <span className="text-lg font-medium text-foreground">{item}</span>
                     </div>
                   </StaggerItem>
                 ))}
@@ -59,27 +59,28 @@ export function Industries() {
 
           <FadeIn delay={0.2}>
             <div className="flex flex-col h-full">
-              <div className="flex items-center gap-4 mb-7 pb-5 border-b border-foreground/40">
-                <div className="w-11 h-11 bg-card border border-border flex items-center justify-center text-primary">
-                  <Anchor strokeWidth={1.5} size={22} />
+              <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border">
+                <div className="w-14 h-14 bg-white border border-border flex items-center justify-center text-foreground">
+                  <Anchor strokeWidth={1.5} size={28} />
                 </div>
-                <h4 className="text-3xl md:text-4xl font-display font-semibold text-foreground">
+                <h4 className="text-2xl md:text-3xl font-display font-semibold text-foreground">
                   Naval & Military
                 </h4>
               </div>
-              <StaggerContainer className="grid grid-cols-1">
+              <StaggerContainer className="grid grid-cols-1 gap-y-4">
                 {navalFacilities.map((item, index) => (
                   <StaggerItem key={index}>
-                    <div className="flex items-start gap-3 py-3 border-b border-border/70">
-                      <span className="text-primary mt-1.5 text-xs" aria-hidden="true">—</span>
-                      <span className="text-[15px] font-medium text-foreground">{item}</span>
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary mt-1.5 opacity-80">▹</span>
+                      <span className="text-lg font-medium text-foreground">{item}</span>
                     </div>
                   </StaggerItem>
                 ))}
               </StaggerContainer>
               
-              <div className="mt-10 p-6 md:p-8 bg-accent border-l-2 border-primary relative overflow-hidden">
-                <p className="text-foreground/75 text-sm leading-relaxed font-medium relative z-10">
+              <div className="mt-12 p-8 bg-white border border-border relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+                <p className="text-muted-foreground font-medium italic relative z-10">
                   "Trusted by government agencies, naval defense contractors, and critical utility infrastructure providers."
                 </p>
               </div>
