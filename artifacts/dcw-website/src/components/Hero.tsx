@@ -30,9 +30,9 @@ export function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <h1 className="text-[clamp(3rem,6.8vw,6.375rem)] font-display font-semibold leading-[0.97] text-foreground mb-7 md:mb-9 max-w-[950px]">
+            <h1 className="text-[clamp(3rem,6.8vw,6.375rem)] font-display font-semibold leading-[1.08] md:leading-[0.97] text-foreground mb-7 md:mb-9 max-w-[950px]">
               A Southern California <br className="hidden md:block" />
-              <span className="text-primary">Union Welding</span> Company.
+              <span className="inline-block whitespace-nowrap bg-foreground text-[#FBFBFB] px-[0.12em]">Union Welding</span> Company.
             </h1>
           </FadeIn>
 
