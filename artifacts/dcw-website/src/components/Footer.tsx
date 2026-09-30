@@ -1,4 +1,4 @@
-import logo from "@assets/dcw-logo-srufer-welder_1785714280136.png";
+import logo from "@/assets/dcw-logo-tight.png";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

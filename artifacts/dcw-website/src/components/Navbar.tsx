@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@assets/dcw-logo-srufer-welder_1785714280136.png";
+import logo from "@/assets/dcw-logo-tight.png";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
