@@ -34,6 +34,12 @@ const photos = [
     caption: "",
     detail: "",
   },
+  {
+    src: new URL("@assets/large-pipe_1791491002870.jpeg", import.meta.url).href,
+    caption: "",
+    detail: "",
+    alt: "Dayton Certified Welding crew working on a large pipeline in an excavated trench",
+  },
 ];
 
 export function ProjectExperience() {
@@ -69,7 +75,7 @@ export function ProjectExperience() {
                 <div className="relative overflow-hidden aspect-[4/3]">
                   <img
                     src={photo.src}
-                    alt={photo.caption}
+                    alt={photo.alt ?? photo.caption}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
@@ -118,7 +124,7 @@ export function ProjectExperience() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.25 }}
               src={photos[lightbox].src}
-              alt={photos[lightbox].caption}
+              alt={photos[lightbox].alt ?? photos[lightbox].caption}
               className="w-full max-h-[75vh] object-contain"
             />
             <div className="mt-4 border-l-2 border-primary pl-4">
