@@ -1,6 +1,6 @@
 import { FadeIn } from "./animations";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import arcFlash from "@assets/dayton_certified_welding_4_1785709353361.jpg";
+import pipelineWelding from "@assets/Pipeline_weld_dayton_1791493895020.jpeg";
 
 export function Hero() {
   return (
@@ -8,8 +8,8 @@ export function Hero() {
       {/* Right-side hero photo */}
       <div className="absolute top-0 right-0 w-[42vw] h-full hidden lg:block pointer-events-none">
         <img
-          src={arcFlash}
-          alt="Certified field welding — confined space arc work"
+          src={pipelineWelding}
+          alt="Field welder working on a flanged pipeline"
           className="w-full h-full object-cover"
         />
         {/* Dark gradient fade toward the text */}
