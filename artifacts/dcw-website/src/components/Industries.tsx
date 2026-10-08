@@ -36,7 +36,7 @@ export function Industries() {
         </FadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-          <FadeIn delay={0.1}>
+          <FadeIn delay={0.1} className="h-full">
             <div className="flex flex-col h-full">
               <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border">
                 <div className="w-14 h-14 bg-white border border-border flex items-center justify-center text-foreground">
@@ -46,7 +46,7 @@ export function Industries() {
                   Water & Wastewater
                 </h4>
               </div>
-              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+              <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 mb-auto">
                 {waterFacilities.map((item, index) => (
                   <StaggerItem key={index}>
                     <div className="flex items-start gap-3">
@@ -56,14 +56,14 @@ export function Industries() {
                   </StaggerItem>
                 ))}
               </StaggerContainer>
-              <figure className="mt-8 border border-border bg-white">
+              <figure className="mt-8 shrink-0 border border-border bg-white">
                 <img
                   src={pipelineInfrastructure}
                   alt="Field crew working on large-diameter pipeline infrastructure at an excavation site"
                   width={1024}
                   height={768}
                   loading="lazy"
-                  className="block w-full h-auto"
+                  className="block w-full aspect-[4/3] object-cover"
                 />
                 <figcaption className="px-5 py-4 border-t border-border text-sm font-semibold text-foreground">
                   Pipeline Infrastructure
@@ -72,7 +72,7 @@ export function Industries() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={0.2}>
+          <FadeIn delay={0.2} className="h-full">
             <div className="flex flex-col h-full">
               <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border">
                 <div className="w-14 h-14 bg-white border border-border flex items-center justify-center text-foreground">
@@ -82,7 +82,7 @@ export function Industries() {
                   Naval & Military
                 </h4>
               </div>
-              <StaggerContainer className="grid grid-cols-1 gap-y-4">
+              <StaggerContainer className="grid grid-cols-1 gap-y-4 mb-auto">
                 {navalFacilities.map((item, index) => (
                   <StaggerItem key={index}>
                     <div className="flex items-start gap-3">
@@ -92,29 +92,30 @@ export function Industries() {
                   </StaggerItem>
                 ))}
               </StaggerContainer>
-              <figure className="mt-8 border border-border bg-white">
+              <figure className="mt-8 shrink-0 border border-border bg-white">
                 <img
                   src={navalShipRepair}
                   alt="Dayton Certified Welding crew on the deck of a naval ship"
                   width={1024}
                   height={576}
                   loading="lazy"
-                  className="block w-full h-auto"
+                  className="block w-full aspect-[4/3] object-cover"
                 />
                 <figcaption className="px-5 py-4 border-t border-border text-sm font-semibold text-foreground">
                   Naval Ship Repair
                 </figcaption>
               </figure>
-
-              <div className="mt-12 p-8 bg-white border border-border relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
-                <p className="text-muted-foreground font-medium italic relative z-10">
-                  "Trusted by government agencies, naval defense contractors, and critical utility infrastructure providers."
-                </p>
-              </div>
             </div>
           </FadeIn>
         </div>
+        <FadeIn>
+          <div className="mt-12 p-6 md:p-8 bg-white border border-border relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+            <p className="text-muted-foreground font-medium italic relative z-10">
+              "Trusted by government agencies, naval defense contractors, and critical utility infrastructure providers."
+            </p>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
