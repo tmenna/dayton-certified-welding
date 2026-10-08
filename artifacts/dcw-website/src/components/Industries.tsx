@@ -1,5 +1,6 @@
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { Droplet, Anchor } from "lucide-react";
+import navalShipRepair from "@assets/vls-naval_1791490562120.jpeg";
 
 export function Industries() {
   const waterFacilities = [
@@ -77,7 +78,20 @@ export function Industries() {
                   </StaggerItem>
                 ))}
               </StaggerContainer>
-              
+              <figure className="mt-8 border border-border bg-white">
+                <img
+                  src={navalShipRepair}
+                  alt="Dayton Certified Welding crew on the deck of a naval ship"
+                  width={1024}
+                  height={576}
+                  loading="lazy"
+                  className="block w-full h-auto"
+                />
+                <figcaption className="px-5 py-4 border-t border-border text-sm font-semibold text-foreground">
+                  Naval Ship Repair
+                </figcaption>
+              </figure>
+
               <div className="mt-12 p-8 bg-white border border-border relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
                 <p className="text-muted-foreground font-medium italic relative z-10">
