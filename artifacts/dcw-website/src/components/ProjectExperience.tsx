@@ -40,6 +40,24 @@ const photos = [
     detail: "",
     alt: "Dayton Certified Welding crew working on a large pipeline in an excavated trench",
   },
+  {
+    src: new URL("@assets/image23_1791491573836.jpeg", import.meta.url).href,
+    caption: "",
+    detail: "",
+    alt: "Collage of field crews welding and working on a large tank",
+  },
+  {
+    src: new URL("@assets/Pipeline_weld_dayton_1791491573836.jpeg", import.meta.url).href,
+    caption: "",
+    detail: "",
+    alt: "Welder performing field welding on a flanged pipe",
+  },
+  {
+    src: new URL("@assets/Pipeline_weld_dayton_2_1791491573836.jpeg", import.meta.url).href,
+    caption: "",
+    detail: "",
+    alt: "Welder working along a large-diameter pipeline joint",
+  },
 ];
 
 export function ProjectExperience() {
