@@ -1,6 +1,7 @@
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { Droplet, Anchor } from "lucide-react";
 import navalShipRepair from "@assets/vls-naval_1791490562120.jpeg";
+import pipelineFieldWelding from "@assets/large-pipe_1791491002870.jpeg";
 
 export function Industries() {
   const waterFacilities = [
@@ -55,6 +56,19 @@ export function Industries() {
                   </StaggerItem>
                 ))}
               </StaggerContainer>
+              <figure className="mt-8 border border-border bg-white">
+                <img
+                  src={pipelineFieldWelding}
+                  alt="Dayton Certified Welding crew working on a large pipeline in an excavated trench"
+                  width={768}
+                  height={1024}
+                  loading="lazy"
+                  className="block w-full h-auto max-h-[420px] object-contain bg-background"
+                />
+                <figcaption className="px-5 py-4 border-t border-border text-sm font-semibold text-foreground">
+                  Pipeline Field Welding
+                </figcaption>
+              </figure>
             </div>
           </FadeIn>
 
