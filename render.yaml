@@ -7,7 +7,7 @@ services:
     branch: main
     region: oregon
     plan: free
-    buildCommand: corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm run build:render
+    buildCommand: pnpm install --frozen-lockfile --prod=false && pnpm run build:render
     startCommand: pnpm run start:render
     healthCheckPath: /api/healthz
     autoDeployTrigger: commit

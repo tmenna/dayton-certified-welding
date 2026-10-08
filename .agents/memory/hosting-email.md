@@ -14,3 +14,9 @@ GitHub integration status can report active/healthy while workspace Git authenti
 **Why:** This workspace returned inconsistent connection and authorization states during a GitHub push attempt.
 
 **How to apply:** Verify access with Git rather than trusting status alone. If the authorization prompt cannot repair access, direct the user to reconnect GitHub in account Git Providers settings, as recommended by Replit's Git documentation.
+
+Render's native build environment can make `/usr/bin` read-only; do not run `corepack enable` to replace its package-manager binaries.
+
+**Why:** Render failed before installation with `EROFS` when Corepack attempted to unlink `/usr/bin/pnpm`.
+
+**How to apply:** Use the existing pnpm command or invoke Corepack directly without installing system-wide shims.

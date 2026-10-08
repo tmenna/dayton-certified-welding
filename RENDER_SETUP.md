@@ -22,7 +22,7 @@ domain. No database is required for the website's current functionality.
 - Branch: `main`
 - Root directory: leave blank
 - Build command:
-  `corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm run build:render`
+  `pnpm install --frozen-lockfile --prod=false && pnpm run build:render`
 - Start command: `pnpm run start:render`
 - Health check: `/api/healthz`
 - Auto-deploy: on commit
@@ -33,6 +33,8 @@ domain. No database is required for the website's current functionality.
 
 Render supplies the runtime `PORT`. Do not set it manually. Development
 dependencies must be installed during the build because Vite is a build tool.
+Use Render's existing pnpm command. Do not run `corepack enable`: it attempts to
+replace binaries under `/usr/bin`, which is read-only in Render's build environment.
 Do not use the root `build` script: it also builds unrelated preview artifacts.
 
 ## Connect the custom domain after testing
