@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+services:
+  - type: web
+    name: dayton-certified-welding
+    runtime: node
+    repo: https://github.com/tmenna/dayton-certified-welding
+    branch: main
+    region: oregon
+    plan: free
+    buildCommand: corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm run build:render
+    startCommand: pnpm run start:render
+    healthCheckPath: /api/healthz
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: SERVE_WEBSITE
+        value: "true"
