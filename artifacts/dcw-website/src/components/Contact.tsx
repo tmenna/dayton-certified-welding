@@ -2,16 +2,23 @@ import { FadeIn } from "./animations";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useRef, useState, type FormEvent } from "react";
 import { useSubmitEstimate } from "@workspace/api-client-react";
+import { BotVerification } from "./BotVerification";
 
 export function Contact() {
   const mutation = useSubmitEstimate({ mutation: { retry: false } });
   const [feedback, setFeedback] = useState<{ error: boolean; text: string } | null>(null);
   const sending = useRef(false);
   const lastRequest = useRef<{ payload: string; id: string } | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [verificationVersion, setVerificationVersion] = useState(0);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (sending.current) return;
+    if (!turnstileToken) {
+      setFeedback({ error: true, text: "Please complete the security check before sending." });
+      return;
+    }
     const form = event.currentTarget;
     const fields = new FormData(form);
     const data = {
@@ -33,7 +40,7 @@ export function Contact() {
     setFeedback(null);
     try {
       const result = await mutation.mutateAsync({
-        data: { ...data, requestId: lastRequest.current!.id },
+        data: { ...data, requestId: lastRequest.current!.id, turnstileToken },
       });
       setFeedback({ error: false, text: result.message });
       form.reset();
@@ -46,6 +53,10 @@ export function Contact() {
       });
     } finally {
       sending.current = false;
+      // Tokens may be consumed even on network/email failure. Keep the inquiry
+      // and its idempotency key, but always obtain a fresh verification token.
+      setTurnstileToken("");
+      setVerificationVersion((version) => version + 1);
     }
   }
 
@@ -138,12 +149,13 @@ export function Contact() {
                       <label htmlFor="estimate-website">Leave this field blank</label>
                       <input id="estimate-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
                     </div>
+                    <BotVerification key={verificationVersion} onToken={setTurnstileToken} />
                     {feedback && (
                       <p role={feedback.error ? "alert" : "status"} aria-live="polite" className="text-sm font-medium text-foreground">
                         {feedback.text}
                       </p>
                     )}
-                    <button type="submit" disabled={mutation.isPending} className="w-full bg-foreground text-background font-bold uppercase tracking-wider py-4 hover:bg-primary hover:text-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-wait">
+                    <button type="submit" disabled={mutation.isPending || !turnstileToken} className="w-full bg-foreground text-background font-bold uppercase tracking-wider py-4 hover:bg-primary hover:text-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
                       {mutation.isPending ? "Sending…" : "Send Request"}
                     </button>
                   </form>

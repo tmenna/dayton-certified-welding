@@ -1,18 +1,11 @@
 import { Router } from "express";
-import { rateLimit } from "express-rate-limit";
+import { estimateRateLimit } from "../lib/estimate-rate-limit";
+import { verifyEstimateToken } from "../lib/turnstile";
 import { SubmitEstimateBody, SubmitEstimateResponse } from "@workspace/api-zod";
 import { EmailSendError, sendEstimateEmail } from "../lib/estimate-email";
 
 const router = Router();
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  limit: 5,
-  standardHeaders: "draft-8",
-  legacyHeaders: false,
-  message: { error: "Too many requests. Please wait 15 minutes or call (951) 297-0622." },
-});
-
-router.post("/estimates", limiter, async (req, res) => {
+router.post("/estimates", estimateRateLimit, async (req, res): Promise<void> => {
   const origin = req.get("origin");
   const allowedOrigins = [
     "https://daytoncertifiedwelding.com",
@@ -33,6 +26,16 @@ router.post("/estimates", limiter, async (req, res) => {
   });
   if (!parsed.success || parsed.data.website) {
     res.status(400).json({ error: "Please enter a name, valid email, and project details (10–5,000 characters)." });
+    return;
+  }
+  try {
+    if (!await verifyEstimateToken(parsed.data.turnstileToken, req.ip)) {
+      res.status(403).json({ error: "Verification expired or failed. Please retry the security check." });
+      return;
+    }
+  } catch {
+    req.log.error("Estimate bot verification unavailable");
+    res.status(503).json({ error: "Security verification is unavailable. Please try again or call (951) 297-0622." });
     return;
   }
   try {

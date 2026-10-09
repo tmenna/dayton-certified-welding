@@ -23,6 +23,8 @@ export const submitEstimateBodyDetailsMax = 5000;
 
 export const submitEstimateBodyWebsiteMax = 200;
 
+export const submitEstimateBodyTurnstileTokenMax = 2048;
+
 
 
 export const SubmitEstimateBody = zod.object({
@@ -30,7 +32,8 @@ export const SubmitEstimateBody = zod.object({
   "email": zod.string().email().max(submitEstimateBodyEmailMax),
   "details": zod.string().min(submitEstimateBodyDetailsMin).max(submitEstimateBodyDetailsMax),
   "website": zod.string().max(submitEstimateBodyWebsiteMax).optional().describe('Spam-trap field; must be empty'),
-  "requestId": zod.string().uuid()
+  "requestId": zod.string().uuid(),
+  "turnstileToken": zod.string().min(1).max(submitEstimateBodyTurnstileTokenMax).describe('Single-use Cloudflare Turnstile token for the estimate action')
 })
 
 export const SubmitEstimateResponse = zod.object({

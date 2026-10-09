@@ -26,4 +26,10 @@ export interface EstimateInput {
      */
   website?: string;
   requestId: string;
+  /**
+     * Single-use Cloudflare Turnstile token for the estimate action
+     * @minLength 1
+     * @maxLength 2048
+     */
+  turnstileToken: string;
 }

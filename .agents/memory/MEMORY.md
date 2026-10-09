@@ -1,1 +1,2 @@
 - [Hosting and estimate email](hosting-email.md) — user wants GitHub-to-Render deployment and Resend for estimate requests.
+- [Estimate bot protection](estimate-bot-protection.md) — direct Turnstile verification, existing PostgreSQL provider, and fail-closed deployment boundaries.

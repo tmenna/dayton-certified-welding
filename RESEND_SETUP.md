@@ -62,6 +62,78 @@ domain verification, Render key configuration, and the inbox check are done.
 
 The endpoint validates lengths/email addresses, rejects populated spam-trap
 fields, checks browser origins in production, and limits each IP address to five
-attempts per 15 minutes. Rate limits are in-memory and reset when the service
-restarts; multi-instance deployments would need a shared rate-limit store.
+attempts per 15 minutes using atomic counters in the existing PostgreSQL database.
+Counters survive restarts and are shared by all instances. IPv6 addresses are
+grouped by /56 subnet. Invalid inquiries and failed verifications count as attempts.
+If storage is unavailable, the endpoint returns 503 and sends no email.
 Unchanged retries reuse a Resend idempotency key to reduce duplicate emails.
+
+### Turnstile setup (required before accepting inquiries)
+
+The integration catalog was checked: Cloudflare's available integration manages
+DNS/infrastructure, not Turnstile widgets. This app uses Cloudflare's public
+Turnstile client script and server-side Siteverify API directly; it does not
+require connecting Cloudflare DNS or moving your domain.
+
+1. In the Cloudflare dashboard, open **Turnstile → Add widget** and select
+   **Managed** mode (no image puzzles). Add `daytoncertifiedwelding.com`,
+   `www.daytoncertifiedwelding.com`, and the exact Render hostname if you serve
+   the form there. Use a separate widget for development hostnames.
+2. Configure the following in Render → service → Environment (and Replit
+   Secrets/environment for development). Never commit secret keys:
+
+   | Variable | Purpose |
+   | --- | --- |
+   | `VITE_TURNSTILE_SITE_KEY` | Public widget site key; embedded during the website build |
+   | `TURNSTILE_SECRET_KEY` | Secret key for that same widget; server only |
+   | `TURNSTILE_ALLOWED_HOSTNAMES` | Comma-separated exact hostnames above, without protocols/paths |
+   | `DATABASE_URL` | Connection to your existing PostgreSQL database; use the same DB on every instance |
+   | `RATE_LIMIT_SECRET` | Long random server-only secret shared across instances, used to HMAC IP keys; `SESSION_SECRET` is an alternative if already configured |
+
+3. Apply the additive table to that existing database before deploying:
+   `pnpm --filter @workspace/db run push`. Review the proposed changes; this adds
+   only the `estimate_rate_limits` table and its expiry index. Run with the target
+   database configured in your deployment environment; do not copy database
+   credentials into commands, chat, or source control.
+4. Rebuild and redeploy the website as well as the API. Changing the public
+   `VITE_` site key requires a new build. Missing/unsafe CAPTCHA configuration
+   disables submissions; there is no production bypass. Do not deploy until
+   these values and the table are ready.
+
+Tokens must pass Siteverify with `success: true`, action `estimate`, and an
+explicitly allowed hostname. Cloudflare rejects expired (five-minute) and reused
+tokens. The backend has a five-second verification timeout and returns 503 on
+provider/configuration failures, never sending email without verification.
+Missing/oversized tokens are rejected with 400; failed/expired tokens return 403.
+Browser origin checks remain supplemental; requests without Origin still require
+verification. No client-supplied IP header is used directly. Render must keep
+its single trusted reverse-proxy hop; do not enable unrestricted `trust proxy`.
+Other deployments need an audited proxy policy, otherwise visitors share the
+direct connection's IP limit.
+
+Only HMAC-derived IP/subnet keys, attempt counts, and expiry times are persisted,
+not inquiry details, raw IPs, or verification tokens. Expired counters older than
+a day are pruned on startup and hourly. Keep the HMAC secret stable: rotating it
+starts new counters. The limit returns 429 with `Retry-After` and rate-limit
+headers; it is five attempts per IP/subnet, not a global email spending cap.
+
+### Verification checklist
+
+- A normal verified inquiry succeeds; the form resets only after acceptance.
+- Missing, fabricated, expired, reused, wrong-action, and wrong-hostname tokens
+  never call Resend, including requests without an Origin header.
+- Six attempts from the same IP are limited, even after a restart or across
+  concurrent instances. IPv6 address rotation within a /56 cannot bypass it.
+- A database or verification outage sends no email. Entered details remain for
+  retry; every submission attempt gets a fresh token while retaining the same
+  email idempotency key for an unchanged inquiry.
+- Check keyboard navigation and screen-reader status announcements. If the
+  script is blocked or the check expires/fails, the retry button and direct
+  phone/email links remain available.
+- `pnpm --filter @workspace/api-server run test:estimates` uses synthetic
+  Siteverify/Resend responses (no real emails) and isolated counters in the
+  development database. Run it after applying the table.
+- For manual widget tests use Cloudflare's documented dummy keys **only in
+  development**, never production. Configure an allowed hostname matching the
+  verifier response and verify the `estimate` action. Production rejects dummy
+  keys; no test bypass is provided by the application.

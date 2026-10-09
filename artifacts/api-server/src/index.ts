@@ -1,5 +1,6 @@
 import app from "./app";
 import { logger } from "./lib/logger";
+import { pruneEstimateLimits } from "./lib/estimate-rate-limit";
 
 const rawPort = process.env["PORT"];
 
@@ -23,3 +24,9 @@ app.listen(port, (err) => {
 
   logger.info({ port }, "Server listening");
 });
+
+const prune = () => {
+  void pruneEstimateLimits().catch(() => logger.warn("Expired estimate counters could not be pruned"));
+};
+prune();
+setInterval(prune, 60 * 60 * 1000).unref();
