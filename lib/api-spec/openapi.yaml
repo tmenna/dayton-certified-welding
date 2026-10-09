@@ -11,6 +11,48 @@ tags:
   - name: health
     description: Health operations
 paths:
+  /estimates:
+    post:
+      operationId: submitEstimate
+      tags: [estimates]
+      summary: Send a project estimate inquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EstimateInput"
+      responses:
+        "202":
+          description: Email accepted by provider
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EstimateResult"
+        "400":
+          description: Invalid inquiry
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "403":
+          description: Origin not allowed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "503":
+          description: Email service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
   /healthz:
     get:
       operationId: healthCheck
@@ -26,6 +68,42 @@ paths:
                 $ref: "#/components/schemas/HealthStatus"
 components:
   schemas:
+    EstimateInput:
+      type: object
+      required: [name, email, details, requestId]
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 150
+          pattern: '^[^\r\n]+$'
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        details:
+          type: string
+          minLength: 10
+          maxLength: 5000
+        website:
+          type: string
+          maxLength: 200
+          description: Spam-trap field; must be empty
+        requestId:
+          type: string
+          format: uuid
+    EstimateResult:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+    ApiError:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
     HealthStatus:
       type: object
       properties:

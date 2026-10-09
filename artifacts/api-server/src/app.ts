@@ -8,6 +8,8 @@ import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const app: Express = express();
+// Render appends the client address to X-Forwarded-For at its reverse proxy.
+if (process.env.SERVE_WEBSITE === "true") app.set("trust proxy", 1);
 
 app.use(
   pinoHttp({
@@ -29,7 +31,7 @@ app.use(
   }),
 );
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);

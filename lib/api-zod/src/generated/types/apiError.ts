@@ -6,7 +6,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export * from './apiError';
-export * from './estimateInput';
-export * from './estimateResult';
-export * from './healthStatus';
+export interface ApiError {
+  error: string;
+}

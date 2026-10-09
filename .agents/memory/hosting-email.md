@@ -20,3 +20,9 @@ Render's native build environment can make `/usr/bin` read-only; do not run `cor
 **Why:** Render failed before installation with `EROFS` when Corepack attempted to unlink `/usr/bin/pnpm`.
 
 **How to apply:** Use the existing pnpm command or invoke Corepack directly without installing system-wide shims.
+
+Orval's automatic Zod-version detection can emit Zod 4 syntax even when this workspace's catalog installs Zod 3.
+
+**Why:** Adding email and UUID formats produced unsupported top-level validators during code generation.
+
+**How to apply:** Keep generated validation syntax aligned with the installed major version; configure the generator explicitly rather than editing generated output.

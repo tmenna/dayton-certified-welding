@@ -18,3 +18,7 @@ services:
         value: production
       - key: SERVE_WEBSITE
         value: "true"
+      - key: ESTIMATE_FROM_EMAIL
+        value: "Dayton Certified Welding <estimates@daytoncertifiedwelding.com>"
+      - key: ESTIMATE_TO_EMAIL
+        value: david@daytoncertifiedwelding.com

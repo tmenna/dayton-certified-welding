@@ -1,7 +1,8 @@
 # Render setup
 
 This deploys the website and Express API as one Node Web Service. The estimate
-form does not send emails yet; Resend integration is separate work.
+form sends through Resend once the sending domain is verified and the Render
+service has `RESEND_API_KEY`. See `RESEND_SETUP.md`.
 
 ## Recommended: use the Blueprint
 

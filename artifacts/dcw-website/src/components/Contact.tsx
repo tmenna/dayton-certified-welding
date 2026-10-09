@@ -1,7 +1,54 @@
 import { FadeIn } from "./animations";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { useRef, useState, type FormEvent } from "react";
+import { useSubmitEstimate } from "@workspace/api-client-react";
 
 export function Contact() {
+  const mutation = useSubmitEstimate({ mutation: { retry: false } });
+  const [feedback, setFeedback] = useState<{ error: boolean; text: string } | null>(null);
+  const sending = useRef(false);
+  const lastRequest = useRef<{ payload: string; id: string } | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (sending.current) return;
+    const form = event.currentTarget;
+    const fields = new FormData(form);
+    const data = {
+      name: String(fields.get("name") || "").trim(),
+      email: String(fields.get("email") || "").trim(),
+      details: String(fields.get("details") || "").trim(),
+      website: String(fields.get("website") || ""),
+    };
+    if (data.name.length < 2 || data.details.length < 10) {
+      setFeedback({ error: true, text: "Please enter a name and at least 10 characters of project details." });
+      return;
+    }
+    // Keep the same id when retrying an unchanged request after a network error.
+    const payload = JSON.stringify(data);
+    if (lastRequest.current?.payload !== payload) {
+      lastRequest.current = { payload, id: crypto.randomUUID() };
+    }
+    sending.current = true;
+    setFeedback(null);
+    try {
+      const result = await mutation.mutateAsync({
+        data: { ...data, requestId: lastRequest.current!.id },
+      });
+      setFeedback({ error: false, text: result.message });
+      form.reset();
+      lastRequest.current = null;
+    } catch (error) {
+      const apiError = error as { data?: { error?: string } };
+      setFeedback({
+        error: true,
+        text: apiError.data?.error || "We couldn’t send your request. Please try again or call (951) 297-0622.",
+      });
+    } finally {
+      sending.current = false;
+    }
+  }
+
   return (
     <section id="contact" className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Decorative accent */}
@@ -74,21 +121,30 @@ export function Contact() {
                   <h4 className="font-display font-semibold text-xl text-foreground mb-6 pb-4 border-b border-border">
                     Request an Inquiry
                   </h4>
-                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                  <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                      <label className="block text-sm font-semibold text-foreground mb-2">Name / Company</label>
-                      <input type="text" className="w-full bg-white border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors" placeholder="John Doe - Acme Corp" />
+                      <label htmlFor="estimate-name" className="block text-sm font-semibold text-foreground mb-2">Name / Company</label>
+                      <input id="estimate-name" name="name" type="text" required minLength={2} maxLength={150} autoComplete="name" disabled={mutation.isPending} className="w-full bg-white border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors" placeholder="John Doe - Acme Corp" />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-foreground mb-2">Email Address</label>
-                      <input type="email" className="w-full bg-white border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors" placeholder="john@example.com" />
+                      <label htmlFor="estimate-email" className="block text-sm font-semibold text-foreground mb-2">Email Address</label>
+                      <input id="estimate-email" name="email" type="email" required maxLength={254} autoComplete="email" disabled={mutation.isPending} className="w-full bg-white border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors" placeholder="john@example.com" />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-foreground mb-2">Project Details</label>
-                      <textarea rows={4} className="w-full bg-white border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors resize-none" placeholder="Describe your welding requirements..."></textarea>
+                      <label htmlFor="estimate-details" className="block text-sm font-semibold text-foreground mb-2">Project Details</label>
+                      <textarea id="estimate-details" name="details" rows={4} required minLength={10} maxLength={5000} disabled={mutation.isPending} className="w-full bg-white border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors resize-none" placeholder="Describe your welding requirements..."></textarea>
                     </div>
-                    <button type="submit" className="w-full bg-foreground text-background font-bold uppercase tracking-wider py-4 hover:bg-primary hover:text-white transition-colors mt-2">
-                      Send Request
+                    <div className="hidden" aria-hidden="true">
+                      <label htmlFor="estimate-website">Leave this field blank</label>
+                      <input id="estimate-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                    </div>
+                    {feedback && (
+                      <p role={feedback.error ? "alert" : "status"} aria-live="polite" className="text-sm font-medium text-foreground">
+                        {feedback.text}
+                      </p>
+                    )}
+                    <button type="submit" disabled={mutation.isPending} className="w-full bg-foreground text-background font-bold uppercase tracking-wider py-4 hover:bg-primary hover:text-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-wait">
+                      {mutation.isPending ? "Sending…" : "Send Request"}
                     </button>
                   </form>
                 </div>
