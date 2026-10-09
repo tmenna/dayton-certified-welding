@@ -1,2 +1,3 @@
 - [Hosting and estimate email](hosting-email.md) — user wants GitHub-to-Render deployment and Resend for estimate requests.
 - [Estimate bot protection](estimate-bot-protection.md) — direct Turnstile verification, existing PostgreSQL provider, and fail-closed deployment boundaries.
+- [Email-test idempotency](email-test-idempotency.md) — use a stable per-request send key; sandbox clock and crypto availability may differ from tool documentation.
