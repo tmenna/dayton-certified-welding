@@ -9,8 +9,8 @@ Use Turnstile's direct Siteverify API rather than assuming a connected Cloudflar
 
 **How to apply:** Widget creation and per-environment keys require Cloudflare setup. Keep server verification mandatory and fail closed; never use development dummy keys in production.
 
-Shared limits must use the existing PostgreSQL provider, not introduce or replace a database.
+Provisioning production PostgreSQL for Render must not replace or migrate the Replit development database.
 
-**Why:** The assigned requirement explicitly forbids changing database providers and requires protection across restarts and multiple instances.
+**Why:** The user authorized a dedicated production database for Render. This is separate production setup, not a migration of the existing development database.
 
-**How to apply:** All serving instances must point at the same existing database and use a stable shared HMAC secret. Provision configuration before deploying; missing configuration should never bypass spam protection.
+**How to apply:** All instances of the same Render web service must share its production database and a stable HMAC secret. Provision configuration before deploying; missing configuration should never bypass spam protection.
