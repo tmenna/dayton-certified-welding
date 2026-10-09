@@ -46,7 +46,7 @@ export function BotVerification({ onToken }: { onToken: (token: string) => void 
   useEffect(() => {
     onToken("");
     if (!configured) {
-      setStatus("Online requests are currently unavailable. Please call or email us for an estimate.");
+      setStatus("Online estimate requests are temporarily unavailable.");
       return;
     }
     let cancelled = false;
@@ -58,7 +58,7 @@ export function BotVerification({ onToken }: { onToken: (token: string) => void 
       if (cancelled) return;
       onToken("");
       setFailed(true);
-      setStatus("Security check failed. Retry below, or call or email us for an estimate.");
+      setStatus("The security check couldn’t load. Please retry below.");
     };
     loadTurnstile().then((loaded) => {
       if (cancelled || !container.current) return;
@@ -81,7 +81,7 @@ export function BotVerification({ onToken }: { onToken: (token: string) => void 
         "timeout-callback": fail,
         "error-callback": () => { fail(); return true; },
       });
-      setStatus("Please complete the security check.");
+      setStatus("Complete the security check to send your request.");
     }).catch(fail);
     return () => {
       cancelled = true;
@@ -92,17 +92,22 @@ export function BotVerification({ onToken }: { onToken: (token: string) => void 
   return (
     <div className="space-y-2">
       <div ref={container} aria-label="Security verification" />
-      <p role="status" aria-live="polite" className="text-sm text-muted-foreground">{status}</p>
+      <p id="estimate-verification-status" role="status" aria-live="polite" className="text-sm text-muted-foreground">
+        {status}
+        {(!configured || failed) && (
+          <>
+            {" For an estimate, "}
+            <a href="tel:+19512970622" className="underline">call (951) 297-0622</a>
+            {" or "}<a href="mailto:david@daytoncertifiedwelding.com" className="underline">email us</a>.
+          </>
+        )}
+      </p>
       {failed && configured && (
         <button type="button" onClick={() => setRetry((value) => value + 1)}
           className="text-sm font-semibold underline text-foreground">
           Retry security check
         </button>
       )}
-      <p className="text-sm text-muted-foreground">
-        Having trouble? <a href="tel:+19512970622" className="underline">Call (951) 297-0622</a>
-        {" or "}<a href="mailto:david@daytoncertifiedwelding.com" className="underline">email us</a>.
-      </p>
       <noscript>Please call or email us for an estimate; online verification requires JavaScript.</noscript>
     </div>
   );

@@ -155,7 +155,7 @@ export function Contact() {
                         {feedback.text}
                       </p>
                     )}
-                    <button type="submit" disabled={mutation.isPending || !turnstileToken} className="w-full bg-foreground text-background font-bold uppercase tracking-wider py-4 hover:bg-primary hover:text-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                    <button type="submit" disabled={mutation.isPending || !turnstileToken} aria-describedby={!turnstileToken ? "estimate-verification-status" : undefined} className="w-full bg-foreground text-background font-bold uppercase tracking-wider py-4 hover:bg-primary hover:text-white transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
                       {mutation.isPending ? "Sending…" : "Send Request"}
                     </button>
                   </form>
