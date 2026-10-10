@@ -9,11 +9,11 @@ The user wants code pushed to GitHub, then deployed through Render, with Resend 
 
 **How to apply:** Prepare portable server-side email code and Render deployment configuration. Do not assume a Replit-hosted connector will authenticate an application running on Render.
 
-GitHub integration status can report active/healthy while workspace Git authentication fails and the reconnect prompt rejects the connection.
+GitHub integration status or an active GitHub CLI login does not prove that workspace Git can push.
 
-**Why:** This workspace returned inconsistent connection and authorization states during a GitHub push attempt.
+**Why:** This workspace has reported healthy integration status despite authorization failures, and a valid CLI login while HTTPS Git had no working credential helper.
 
-**How to apply:** Verify access with Git rather than trusting status alone. If the authorization prompt cannot repair access, direct the user to reconnect GitHub in account Git Providers settings, as recommended by Replit's Git documentation.
+**How to apply:** Verify write access with a Git push dry run. For HTTPS with a valid CLI login, configure Git to use that login's credential helper; never copy a token into the remote URL. If integration authorization itself is broken, use the documented Git Providers reconnection flow.
 
 Render's native build environment can make `/usr/bin` read-only; do not run `corepack enable` to replace its package-manager binaries.
 
