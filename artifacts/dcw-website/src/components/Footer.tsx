@@ -32,9 +32,22 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-muted-foreground">
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs font-medium text-muted-foreground">
           <p>&copy; {currentYear} Dayton Certified Welding Inc. All rights reserved.</p>
-          <p>Since 1993</p>
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-5">
+            <p>Since 1993</p>
+            <p className="text-background/60">
+              Web solution by{" "}
+              <a
+                href="https://holtekllc.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-background/80 underline decoration-white/25 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+              >
+                Holtek Solutions
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
