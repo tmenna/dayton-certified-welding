@@ -37,7 +37,7 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-5">
             <p>Since 1993</p>
             <p className="text-background/60">
-              Web solution by{" "}
+              Website by{" "}
               <a
                 href="https://holtekllc.com"
                 target="_blank"
